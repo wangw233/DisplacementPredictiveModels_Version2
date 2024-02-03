@@ -1,0 +1,42 @@
+****************************************************************************************
+*      Generic Models for Predicting Coseismic Displacement of Earth Slopes       *
+*                        Wei Wang & Wenqi Du, Wuhan University                                *
+****************************************************************************************
+
+                                       User's Guide
+
+1. Main steps
+Step1: enter input date in 'InputFile.csv'
+Step2: run 'predict.exe', and wait for a moment
+Step3: check results in the generated/updated 'OutputFile.csv'
+
+2. Files
+2.1 "Models>model1.pkl": save file of LightGBM model  [Ky, G, IA, PGV]
+2.2 "Models>model2.pkl": save file of LightGBM model  [Ky, G, IA, PGA, PGV]
+2.3 "predict.exe": execution file for computing seismically induced slope displacements
+2.4 "InputFile.csv": input data (i.e., predictive model type and predictor variable values) are stored in this file
+2.5 "OutputFile.csv": output data (i.e., predicted median and logarithmic standard deviation of displacements) are stored in this file
+
+3. Parameters
+3.1 Input parameters
+"Number": integer; (-oo, +oo); order number specified by the user
+"Model": integer; {1,2,3,4}; model type selected by the user
+                                       '1' for LightGBM model [Ky, G, IA, PGV] 
+                                       '2' for LightGBM model [Ky, G, IA, PGA, PGV]
+                                       '3' for polynomial model [Ky, G, IA, PGV]
+                                       '4' for polynomial model [Ky, G, IA, PGA, PGV]
+"Ky": float; (0.0, +oo); unit: g ; yield acceleration of slopes
+"G": float; (0.0, +oo); unit: MPa ; initial shear modulus of slope soils
+"IA": float; (0.0, +oo); unit: m/s ; Arias intensity of input motions
+"PGA": float; (0.0, +oo); unit: g ; peak ground acceleration of input motions
+"PGV": float; (0.0, +oo); unit: cm/s ; peak ground velocity of input motions
+3.2 Output parameters
+"Number": as introduced in the input parameters
+"Model": as introduced in the input parameters
+"Median": float; (0.0, +oo); unit: cm ; predicted median of displacements
+"Std.": float; (0.0, +oo); unit: log cm; predicted logarithmic standard deviation of displacements
+3.3 Note that the input Ky, G, IA, PGA, and PGV values have to be larger than 0.0
+
+4. Contact us
+Wenqi Du: wqdu309@whu.edu.cn
+Wei Wang: wangwei@whu.edu.cn  or 1294485090@qq.com
